@@ -260,8 +260,8 @@ function toNumber(value, def) {
  *   -2 => -8
  *   0  => 0
  */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
@@ -314,7 +314,7 @@ function getSumOfDigits(/* num */) {
 /**
  * Returns true if the given number is a power of two, false otherwise.
  *
- * @param {number} num
+ * @param {number}
  * @return {boolean}
  *
  * @example:
@@ -322,8 +322,13 @@ function getSumOfDigits(/* num */) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  if (num <= 0) return false;
+  let tempN = num;
+  while (tempN % 2 === 0) {
+    tempN /= 2;
+  }
+  return tempN === 1;
 }
 
 /**
@@ -336,8 +341,8 @@ function isPowerOfTwo(/* num */) {
  *   0 => 0
  *   Math.PI / 2 => 1
  */
-function getSine(/* num */) {
-  throw new Error('Not implemented');
+function getSine(num) {
+  return Math.sin(num);
 }
 
 /**
@@ -380,8 +385,11 @@ function toExponential(/* number, fractionDigits */) {
  * 12345, 2    => '12345.00'
  * 12.345, 1   => '12.3'
  */
-function toFixed(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toFixed(number, fractionDigits) {
+  if (fractionDigits < 0 || fractionDigits > 20) {
+    throw new RangeError('fractionDigits must be btw 0 and 20');
+  }
+  return number.toFixed(fractionDigits);
 }
 
 /**
