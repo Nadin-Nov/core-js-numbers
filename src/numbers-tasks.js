@@ -278,23 +278,18 @@ function getCube(num) {
  *   10 => 55
  */
 function getFibonacciNumber(index) {
-  if (index < 0) {
-    throw new Error('Index must be a non-negative integer.');
+  let result = [];
+  if (index === 0) {
+    result = [0];
+  } else if (index === 1) {
+    result = [0, 1];
+  } else {
+    result = [0, 1];
+    for (let i = 2; i <= index; i += 1) {
+      result.push(result[result.length - 2] + result[result.length - 1]);
+    }
   }
-  if (index === 0) return 0;
-  if (index === 1) return 1;
-
-  let a = 0;
-  let b = 1;
-  let fib = 0;
-
-  for (let i = 2; i <= index; i + 1) {
-    fib = a + b;
-    a = b;
-    b = fib;
-  }
-
-  return fib;
+  return result[index];
 }
 
 /**
@@ -489,12 +484,7 @@ function isInteger(number) {
  * 'abcdefgh'      => NaN
  */
 function getFloatOnString(str) {
-  const match = str.match(/^[+-]?\\d\\.?\\d+/);
-  if (match) {
-    const floatValue = Number.parseFloat(match[0]);
-    return Number.isNaN(floatValue) ? NaN : floatValue;
-  }
-  return NaN;
+  return Number.parseFloat(str);
 }
 
 /**
@@ -512,15 +502,7 @@ function getFloatOnString(str) {
  * '10', 8              => 8
  */
 function getIntegerOnString(str, base) {
-  if (base < 2 || base > 36) {
-    return NaN;
-  }
-  const match = str.match(/^[+-]?\d+/);
-  if (match) {
-    const integerValue = Number.parseInt(match[0], base);
-    return Number.isNaN(integerValue) ? NaN : integerValue;
-  }
-  return NaN;
+  return Number.parseInt(str, base);
 }
 
 /**
