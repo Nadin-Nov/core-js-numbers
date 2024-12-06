@@ -277,8 +277,24 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  if (index < 0) {
+    throw new Error('Index must be a non-negative integer.');
+  }
+  if (index === 0) return 0;
+  if (index === 1) return 1;
+
+  let a = 0;
+  let b = 1;
+  let fib = 0;
+
+  for (let i = 2; i <= index; i + 1) {
+    fib = a + b;
+    a = b;
+    b = fib;
+  }
+
+  return fib;
 }
 
 /**
@@ -472,8 +488,13 @@ function isInteger(number) {
  * '4.567abcdefgh' => 4.567
  * 'abcdefgh'      => NaN
  */
-function getFloatOnString(/* str */) {
-  throw new Error('Not implemented');
+function getFloatOnString(str) {
+  const match = str.match(/^[+-]?\\d\\.?\\d+/);
+  if (match) {
+    const floatValue = Number.parseFloat(match[0]);
+    return Number.isNaN(floatValue) ? NaN : floatValue;
+  }
+  return NaN;
 }
 
 /**
@@ -496,7 +517,7 @@ function getIntegerOnString(str, base) {
   }
   const match = str.match(/^[+-]?\d+/);
   if (match) {
-    const integerValue = parseInt(match[0], base);
+    const integerValue = Number.parseInt(match[0], base);
     return Number.isNaN(integerValue) ? NaN : integerValue;
   }
   return NaN;
@@ -527,8 +548,8 @@ function isSafeInteger(number) {
  * 5.9  => 5
  * -5.1 => -6
  */
-function roundToSmallestInteger(/* number */) {
-  throw new Error('Not implemented');
+function roundToSmallestInteger(number) {
+  return Math.floor(number);
 }
 
 /**
@@ -541,8 +562,8 @@ function roundToSmallestInteger(/* number */) {
  * 5.1  => 6
  * -5.9 => -5
  */
-function roundToLargestInteger(/* number */) {
-  throw new Error('Not implemented');
+function roundToLargestInteger(number) {
+  return Math.ceil(number);
 }
 
 /**
